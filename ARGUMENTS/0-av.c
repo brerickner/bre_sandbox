@@ -1,20 +1,20 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
-print1(char c)
+int print_string(char *str)
 {
-	return (write(1, &c, 1));
+	return (write(1, str, strlen(str)));
 }
 int main (int ac, char **av)
 {
-	(void)ac;
 	int index;
+	(void)ac;
 
 	for (index = 0; av[index]; index++)
 	{
-		write(STDOUT_FILENO, av[index], strlen(av[index]));
-		print1(' ');
+		print_string(av[index]);
+		print_string(" ");
 	}
-	print1('\n');
+	print_string("\n");
 	return (0);
 }
