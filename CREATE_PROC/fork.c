@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
+int print_string(char *str)
+{
+	return (write(1, str, strlen(str)));
+}
 /**
  * main - fork example
  *
@@ -18,14 +23,14 @@ int main(void)
 		return (1);
 	}
 	my_pid = getpid();
-	printf("My pid is %u\n", my_pid);
+	print_string("My pid is %u\n", my_pid);
 	if (child_pid == 0)
 	{
-		printf("(%u) Nooooooooo!\n", my_pid);
+		print_string("(%u) Nooooooooo!\n", my_pid);
 	}
 	else
 	{
-		printf("(%u) %u, I am your father\n", my_pid, child_pid);
+		print_string("(%u) %u, I am your father\n", my_pid, child_pid);
 	}
 	return (0);
 }
