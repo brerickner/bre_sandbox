@@ -2,17 +2,12 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-int main (int ac, char **av)
+char **tokenizer(char **args, char *deli)
 {
-
-	char *buffer;
-	size_t bufferSize = 32;
-	char *token;
+	char **token;
 
 	(void)ac;
 
-	buffer = av[0];
-	getline(&buffer, &bufferSize, stdin);
 	token = strtok(buffer, " ");
 	while (token != NULL)
 	{
@@ -21,4 +16,13 @@ int main (int ac, char **av)
 
 	}
 	return (0);
+}
+int main (int ac, char **av)
+{
+
+//	char *buffer;
+//	size_t bufferSize = 32;
+//	int 
+//	buffer = av[0];
+//	getline(&buffer, &bufferSize, stdin);
 }

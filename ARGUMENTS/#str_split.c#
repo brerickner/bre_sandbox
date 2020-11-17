@@ -2,34 +2,91 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-int print_string(char *str)
+char **tokenizer(char *str, char *deli)
 {
-	return (write(1, str, strlen(str)));
-}
-void str_split(char **str)
-{
-	char *tokens;
-/*	char **buffer = malloc(strlen(str) * sizeof(char));*/
 
-/*	*buffer = str;*/
+	char *buffer;
+	size_t bufferSize = 32;
+	char **token;
 
-	printf("here");
-	tokens = strtok(*str, " ");
+	(void)ac;
 
-	while(tokens != NULL)
+	buffer = av[0];
+
+	token = strtok(buffer, " ");
+	while (token != NULL)
 	{
-		printf("%s",tokens);
-		tokens = strtok(NULL, " ");
-	}
-	printf("%s", tokens);
-/*	free(tokens);*/
+		printf("%s\n", token);
+		token = strtok(NULL, " ");
 
+	}
+	return (*token);
 }
-int main (void)
+#INCLUDE <STDIO.H>
+#INCLUDE <STRING.H>
+#INCLUDE <UNISTD.H>
+#INCLUDE <STDLIB.H>
+
+CHAR **TOKENIZER(CHAR *STR, CHAR *DELI)
 {
-	char *testStr = "test to see if string splits";
-	char **buffer = malloc(1024);
-	*buffer = testStr;
-	str_split(buffer);
-	return (0);
+        CHAR *TOKEN;
+        CHAR **BUFFER;
+        SIZE_T *BUFFSIZE;
+        INT GL = MALLOC(GETLINE(&BUFFER, &BUFFSIZE, STDIN));
+
+        IF(GL == -1)
+                RETURN (NULL);
+        BUFFER =
+		TOKEN = STRTOK(BUFFER, DELI);
+        WHILE (TOKEN != NULL)
+        {
+                PRINTF("%S\N", TOKEN);
+                TOKEN = STRTOK(NULL, " ");
+        }
+        RETURN (BUFFER);
+}
+INT PRINT_STRING(CHAR *STR)
+{
+        RETURN (WRITE(1, STR, STRLEN(STR)));
+}
+INT MAIN (INT AC, CHAR **AV)
+{
+        INT INDEX;
+        (VOID)AC;
+
+        RETURN (0);
+}#INCLUDE <STDIO.H>
+#INCLUDE <STRING.H>
+#INCLUDE <UNISTD.H>
+#INCLUDE <STDLIB.H>
+
+CHAR **TOKENIZER(CHAR *STR, CHAR *DELI)
+{
+        CHAR *TOKEN;
+        CHAR **BUFFER;
+        SIZE_T *BUFFSIZE;
+        INT GL = MALLOC(GETLINE(&BUFFER, &BUFFSIZE, STDIN));
+
+        IF(GL == -1)
+                RETURN (NULL);
+        BUFFER =
+		TOKEN = STRTOK(BUFFER, DELI);
+        WHILE (TOKEN != NULL)
+        {
+                PRINTF("%S\N", TOKEN);
+                TOKEN = STRTOK(NULL, " ");
+        }
+        RETURN (BUFFER);
+}
+INT PRINT_STRING(CHAR *STR)
+{
+        RETURN (WRITE(1, STR, STRLEN(STR)));
+}
+INT MAIN (INT AC, CHAR **AV)
+{
+        INT INDEX;
+        (VOID)AC;
+
+        RETURN (0);
+	getline(&buffer, &bufferSize, stdin);
 }
