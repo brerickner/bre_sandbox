@@ -2,35 +2,23 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-int print_string(char *str)
+int main (int ac, char **av)
 {
-	return (write(1, str, strlen(str)));
-}
-char **str_split(char *str)
-{
-	char **foundWord = 0;
-	char **holder;
-	int index;
 
+	char *buffer;
+	size_t bufferSize = 32;
+	char *token;
 
-	*foundWord = strtok(str, " ");
-	if(!foundWord)
+	(void)ac;
+
+	buffer = av[0];
+	getline(&buffer, &bufferSize, stdin);
+	token = strtok(buffer, " ");
+	while (token != NULL)
 	{
-		holder = foundWord;
-		return(holder);
-	}
+		printf("%s\n", token);
+		token = strtok(NULL, " ");
 
-	for (index = 0; *foundWord[index]; index++ )
-	{
-		foundWord = &foundWord[index +1];
-		*foundWord = strtok(NULL, " ");
 	}
-	return(foundWord);
-}
-int main (void)
-{
-	char *testStr = "test to see if string splits";
-
-	str_split(testStr);
 	return (0);
 }
