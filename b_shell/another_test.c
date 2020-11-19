@@ -20,11 +20,11 @@ char **tokenizer(char *str, char *delim)
 	buffer = malloc(sizeof(char *) * (token_count + 1));
 
 	if (buffer == NULL)
-	{       return (NULL);  }
-
+		return (NULL);
 	i = 0;
 	buffer[i] = strtok(str, delim);
 	i++;
+
 	while (i < token_count)
 	{
 		buffer[i] = strtok(NULL, delim);
