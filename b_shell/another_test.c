@@ -48,14 +48,13 @@ int main(int ac, char **av)
 
 	while(1)
 	{
-	av[0] = prompt;
-	print_string(prompt);
-	gl = getline(&buffer, &buffSize, stdin);
+		av[0] = prompt;
+		print_string(prompt);
+		gl = getline(&buffer, &buffSize, stdin);
 
-	if (gl == -1)
-		print_string("could not read line");
-	else
-	{
+		if (gl == -1)
+			print_string("could not read line");
+
 		cpyBuff = _strdup(buffer);
 		tokens = tokenizer(cpyBuff, " ");
 		for (i = 0; tokens[i]; i++)
@@ -63,7 +62,6 @@ int main(int ac, char **av)
 			print_string(tokens[i]);
 			print_string("\n");
 		}
-	}
 	}
 	free(buffer);
 	return (0);
