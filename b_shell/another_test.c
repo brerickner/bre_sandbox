@@ -39,32 +39,30 @@ char **tokenizer(char *str, char *delim)
 int main(int ac, char **av)
 {
 	char prompt[] = "$ ";
-	char *buffer;
-	char *cpyBuff;
-	char **tokens;
+	char *buffer = NULL;
+	char **tokens = NULL;
 	size_t buffSize = 0;
 	int gl, i;
 	(void)ac;
 
-	while(1)
-	{
-		av[0] = prompt;
-		print_string(prompt);
-		gl = getline(&buffer, &buffSize, stdin);
 
-		if (gl == -1)
-			print_string("could not read line");
-		else
+	av[0] = prompt;
+	print_string(prompt);
+	gl = getline(&buffer, &buffSize, stdin);
+
+	if (gl == -1)
+		print_string("could not read line");
+	else
+	{
+		tokens = tokenizer(buffer, " ");
+		for (i = 0; tokens[i]; i++)
 		{
-			cpyBuff = buffer;
-			tokens = tokenizer(cpyBuff, " ");
-			for (i = 0; tokens[i]; i++)
-			{
-				print_string(tokens[i]);
-				print_string("\n");
-			}
-			free(buffer);
+			print_string(tokens[i]);
+			print_string("\n");
 		}
+		free(tokens);
+		free(buffer);
 	}
+
 	return (0);
 }
