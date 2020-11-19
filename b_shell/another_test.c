@@ -6,7 +6,7 @@
 
 char **tokenizer(char *str, char *delim)
 {
-	char **buffer;
+	char **buffer = NULL;
 	int delim_count = 0, i, token_count;
 
 	for (i = 0; str[i]; i++)
@@ -42,10 +42,12 @@ int main(int ac, char **av)
 	char *buffer = NULL;
 	char **tokens = NULL;
 	size_t buffSize = 0;
+	char *cpyBuff = NULL;
 	int gl, i;
 	(void)ac;
 
-
+	while(1)
+	{
 	av[0] = prompt;
 	print_string(prompt);
 	gl = getline(&buffer, &buffSize, stdin);
@@ -54,15 +56,16 @@ int main(int ac, char **av)
 		print_string("could not read line");
 	else
 	{
-		tokens = tokenizer(buffer, " ");
+		cpyBuff = _strdup(buffer);
+		tokens = tokenizer(cpyBuff, " ");
 		for (i = 0; tokens[i]; i++)
 		{
 			print_string(tokens[i]);
 			print_string("\n");
 		}
-		free(tokens);
-		free(buffer);
 	}
-
+	free(buffer);
+	}
+	free(buffer);
 	return (0);
 }
