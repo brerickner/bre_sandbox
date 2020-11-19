@@ -9,9 +9,10 @@ char **tokenizer(char *str, char *delim)
 	char **buffer;
 	int delim_count = 0, i, token_count;
 
-	for (i = 0; str[i] != '\0'; i++)
-	{       if (str[i] == *delim)
-		{       delim_count++;  }
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] == *delim)
+			delim_count++;
 	}
 
 	token_count = delim_count + 1;
@@ -52,7 +53,7 @@ int main(int ac, char **av)
 		gl = getline(&buffer, &buffSize, stdin);
 
 		if (gl == -1)
-			print_err("could not read line");
+			print_string("could not read line");
 		else
 		{
 			cpyBuff = buffer;
