@@ -64,7 +64,6 @@ int main(int ac, char **av)
 			print_string("\n");
 		}
 	}
-	free(buffer);
 	}
 	free(buffer);
 	return (0);
