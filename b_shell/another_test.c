@@ -50,18 +50,14 @@ int main(int ac, char **av)
 	{
 		av[0] = prompt;
 		print_string(prompt);
-		gl = getline(&buffer, &buffSize, stdin);
 
-		if (gl == -1)
-			print_string("could not read line");
+		if (getline(&buffer, &buffSize, stdin) == -1)
+			break;
 
 		cpyBuff = _strdup(buffer);
-		tokens = tokenizer(cpyBuff, " ");
-		for (i = 0; tokens[i]; i++)
-		{
-			print_string(tokens[i]);
-			print_string("\n");
-		}
+		tokens = tokenizer(cpyBuff,"\n");
+		if (execve(tokens[0], tokens, NULL) == -1)
+			break;
 	}
 	free(buffer);
 	return (0);
