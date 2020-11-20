@@ -52,12 +52,12 @@ int main(int ac, char **av)
 		print_string(prompt);
 
 		if (getline(&buffer, &buffSize, stdin) == -1)
-			break;
+			break; /*need to write error message*/
 
 		cpyBuff = _strdup(buffer);
 		tokens = tokenizer(cpyBuff,"\n");
 		if (execve(tokens[0], tokens, NULL) == -1)
-			break;
+			break; /*needs error message*/
 	}
 	free(buffer);
 	return (0);
