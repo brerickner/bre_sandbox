@@ -1,7 +1,55 @@
+#include "shell_header.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+/**
+ * description: function that prints string to std output
+ * Return: 1 if successful. Else -1.
+ */
+int print_string(char *str)
+{
+        return (write(STDOUT_FILENO, str, strlen(str)));
+}
+void *prompt(void)
+{
+        char *prompt = ":) ";
+
+        print_string(prompt);
+}
+/**
+ * tokenizer - char str, char delim
+ * Return: pointer to an array of strings parsed from string
+ */
+char **tokenizer(char *str, char *delim)
+{
+        char **buffer;
+        int delim_count = 0, i, token_count;
+
+        for (i = 0; str[i]; i++)
+        {
+                if (str[i] == *delim)
+                        delim_count++;
+        }
+
+        token_count = delim_count + 1;
+
+        buffer = malloc(sizeof(char *) * (token_count + 1));
+
+        if (buffer == NULL)
+                return (NULL);
+        i = 0;
+        buffer[i] = strtok(str, delim);
+        i++;
+        while (i < token_count)
+        {
+                buffer[i] = strtok(NULL, delim);
+                i++;
+        }
+        buffer[i] = NULL;
+
+        return (buffer);
+}
 /**
  * _strdup - returns pointer to new alloc'd space in mem containing string
  * @str: sting
@@ -70,14 +118,4 @@ int _strlen(char *str) /*should we change return type to size_t like man page*/
 	for (count = 0; str[count]; count++)
 		;
 	return (count);
-}
-/**
- * print_string - char str
- * @str: string to be printed
- * description: function that prints string to std output
- * Return: 1 if successful. Else -1.
- */
-int print_string(char *str)
-{
-	return (write(STDOUT_FILENO, str, strlen(str)));
 }
