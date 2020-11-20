@@ -35,22 +35,22 @@ char **tokenizer(char *str, char *delim)
 
 	return (buffer);
 }
-
+void *prompt(void)
+{
+	char *prompt = ":) ";
+	print_string(prompt);
+}
 int main(int ac, char **av)
 {
-	char prompt[] = "$ ";
 	char *buffer = NULL;
 	char **tokens = NULL;
 	size_t buffSize = 0;
 	char *cpyBuff = NULL;
-	int gl, i;
 	(void)ac;
 
 	while(1)
 	{
-		av[0] = prompt;
-		print_string(prompt);
-
+		prompt();
 		if (getline(&buffer, &buffSize, stdin) == -1)
 			break; /*need to write error message*/
 
